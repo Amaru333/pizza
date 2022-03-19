@@ -11,17 +11,14 @@ import {
   View,
 } from 'react-native';
 import Slider from '../../common/components/Slider';
+import {SLIDER_IMAGES} from '../../constants/ImageConstants';
 
 // let ScreenHeight = Dimensions.get('window').height;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
 
-const images = [
-  require('../../assets/images/LoginPage/login_page_background.png'),
-  require('../../assets/images/LoginPage/login_page_background.png'),
-  require('../../assets/images/LoginPage/login_page_background.png'),
-];
+const images = SLIDER_IMAGES;
 
 export default function LoginPageSlider() {
   return (

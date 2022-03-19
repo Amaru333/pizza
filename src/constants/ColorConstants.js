@@ -1,0 +1,2 @@
+export const COLOR_PRIMARY_ORANGE = '#EF5350';
+export const COLOR_PRIMARY_WHITE = '#F8F8F8';
