@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type {Node} from 'react';
+import {Provider} from 'react-redux';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,6 +20,7 @@ import {
 } from 'react-native';
 import LoadingScreen from './src/screens/LoadingScreen';
 import LoginPage from './src/screens/LoginPage';
+import store from './src/redux/store';
 
 const App: () => Node = () => {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -30,10 +32,12 @@ const App: () => Node = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View>
-          {/* <LoadingScreen /> */}
-          <LoginPage />
-        </View>
+        <Provider store={store}>
+          <View>
+            {/* <LoadingScreen /> */}
+            <LoginPage />
+          </View>
+        </Provider>
       </ScrollView>
     </SafeAreaView>
   );

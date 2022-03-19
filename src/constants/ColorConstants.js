@@ -1,2 +1,5 @@
 export const COLOR_PRIMARY_ORANGE = '#EF5350';
+export const COLOR_SECONDARY_ORANGE = '#F77C79';
 export const COLOR_PRIMARY_WHITE = '#F8F8F8';
+export const COLOR_WHITE = '#FFFFFF';
+export const COLOR_LOADING_SCREEN_RED = '#B61827';

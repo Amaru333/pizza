@@ -10,13 +10,13 @@ import {
   Dimensions,
   View,
 } from 'react-native';
-import LoginPageSlider from '../components/LoginPage/LoginPageSlider';
+import LoginPageComponent from '../components/LoginPage/LoginPageComponent';
 
 export default function LoginPage() {
   return (
     <SafeAreaView>
       <ScrollView>
-        <LoginPageSlider />
+        <LoginPageComponent />
       </ScrollView>
     </SafeAreaView>
   );

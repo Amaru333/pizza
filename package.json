@@ -10,8 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "react": "17.0.2",
-    "react-native": "0.67.4"
+    "react-native": "0.67.4",
+    "react-native-svg": "^12.3.0",
+    "react-native-svg-transformer": "^1.0.0",
+    "react-redux": "^7.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -28,7 +32,8 @@
   },
   "rnpm": {
     "assets": [
-      "./src/assets/fonts/Caveat"
+      "./src/assets/fonts/Caveat",
+      "./src/assets/fonts/Poppins"
     ]
   }
 }

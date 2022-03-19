@@ -10,6 +10,11 @@ import {
   Dimensions,
   View,
 } from 'react-native';
+import {
+  COLOR_LOADING_SCREEN_RED,
+  COLOR_WHITE,
+} from '../../constants/ColorConstants';
+import {TEXT_LOGO} from '../../constants/TextConstants';
 
 // let ScreenHeight = Dimensions.get('window').height;
 const screenHeight = Dimensions.get('screen').height;
@@ -21,7 +26,7 @@ export default function LoadingScreenComponent() {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.background}>
-          <Text style={styles.logo}>pizza</Text>
+          <Text style={styles.logo}>{TEXT_LOGO}</Text>
           <Image source={require('../../assets/images/common/logo.png')} />
         </View>
       </ScrollView>
@@ -30,7 +35,7 @@ export default function LoadingScreenComponent() {
 }
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#B61827',
+    backgroundColor: COLOR_LOADING_SCREEN_RED,
     height: screenHeight - navbarHeight,
     display: 'flex',
     justifyContent: 'center',
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
   logo: {
     fontFamily: 'Caveat-Bold',
     fontSize: 70,
-    color: '#FFFFFF',
+    color: COLOR_WHITE,
     marginBottom: 10,
   },
 });
