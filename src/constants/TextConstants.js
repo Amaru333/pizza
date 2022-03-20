@@ -1,6 +1,9 @@
 //LOGO
 export const TEXT_LOGO = 'pizza';
 
+//LOADING SCREEN
+export const TEXT_TAP_CONTINUE = 'Tap to continue';
+
 //SLIDER
 export const TEXT_SLIDER = [
   'Get delicious homemade pizza right at your doorstep',

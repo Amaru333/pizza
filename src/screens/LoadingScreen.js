@@ -2,21 +2,23 @@ import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  Image,
-  Dimensions,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import LoadingScreenComponent from '../components/LoadingScreen/LoadingScreenComponent';
 
-export default function LoadingScreen() {
+export default function LoadingScreen(props) {
+  const pressLoadingScreen = () => {
+    props.navigation.navigate('LoginScreen');
+  };
   return (
     <SafeAreaView>
       <ScrollView>
-        <LoadingScreenComponent />
+        <TouchableWithoutFeedback onPress={pressLoadingScreen}>
+          <View>
+            <LoadingScreenComponent />
+          </View>
+        </TouchableWithoutFeedback>
       </ScrollView>
     </SafeAreaView>
   );

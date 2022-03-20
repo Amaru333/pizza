@@ -1,14 +1,11 @@
 import React from 'react';
 import {
-  SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   ImageBackground,
   Dimensions,
   View,
-  Button,
 } from 'react-native';
 import {useState} from 'react';
 import {

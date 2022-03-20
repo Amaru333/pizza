@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  Image,
-  Dimensions,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import LoginPageComponent from '../components/LoginPage/LoginPageComponent';
 
 export default function LoginPage() {

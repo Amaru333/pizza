@@ -5,16 +5,17 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   Image,
   Dimensions,
   View,
 } from 'react-native';
+import BlinkingText from '../../common/components/BlinkingText';
 import {
   COLOR_LOADING_SCREEN_RED,
+  COLOR_PRIMARY_WHITE,
   COLOR_WHITE,
 } from '../../constants/ColorConstants';
-import {TEXT_LOGO} from '../../constants/TextConstants';
+import {TEXT_LOGO, TEXT_TAP_CONTINUE} from '../../constants/TextConstants';
 
 // let ScreenHeight = Dimensions.get('window').height;
 const screenHeight = Dimensions.get('screen').height;
@@ -28,6 +29,9 @@ export default function LoadingScreenComponent() {
         <View style={styles.background}>
           <Text style={styles.logo}>{TEXT_LOGO}</Text>
           <Image source={require('../../assets/images/common/logo.png')} />
+          <BlinkingText duration={1000}>
+            <Text style={styles.tapText}>{TEXT_TAP_CONTINUE}</Text>
+          </BlinkingText>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -46,5 +50,10 @@ const styles = StyleSheet.create({
     fontSize: 70,
     color: COLOR_WHITE,
     marginBottom: 10,
+  },
+  tapText: {
+    fontFamily: 'Poppins-Regular',
+    color: COLOR_PRIMARY_WHITE,
+    marginTop: 50,
   },
 });
