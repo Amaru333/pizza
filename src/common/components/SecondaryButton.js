@@ -3,16 +3,17 @@ import {StyleSheet, View, TouchableHighlight} from 'react-native';
 
 import {
   COLOR_PRIMARY_ORANGE,
+  COLOR_PRIMARY_WHITE,
   COLOR_SECONDARY_ORANGE,
   COLOR_WHITE,
 } from '../../constants/ColorConstants';
 
-export default function PrimaryButton({children, onPress, width}) {
+export default function SecondaryButton({children, onPress, width}) {
   return (
     <View style={styles.buttonContainer}>
       <TouchableHighlight
         style={[styles.buttonBackground, {width: width}]}
-        underlayColor={COLOR_SECONDARY_ORANGE}
+        underlayColor={COLOR_WHITE}
         onPress={onPress}>
         <View style={styles.buttonTextContainer}>{children}</View>
       </TouchableHighlight>
@@ -21,11 +22,13 @@ export default function PrimaryButton({children, onPress, width}) {
 }
 const styles = StyleSheet.create({
   buttonBackground: {
-    backgroundColor: COLOR_PRIMARY_ORANGE,
+    backgroundColor: COLOR_PRIMARY_WHITE,
     display: 'flex',
     borderRadius: 10,
     elevation: 3,
     marginTop: 30,
+    borderWidth: 1,
+    borderColor: COLOR_PRIMARY_ORANGE,
   },
   buttonContainer: {
     display: 'flex',
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonTextContainer: {
-    color: COLOR_WHITE,
+    color: COLOR_PRIMARY_ORANGE,
     display: 'flex',
     flexDirection: 'row',
     padding: 12,

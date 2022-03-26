@@ -1,5 +1,13 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  StatusBar,
+} from 'react-native';
 import Slider from '../../common/components/Slider';
 import {SLIDER_IMAGES} from '../../constants/ImageConstants';
 import {
@@ -11,17 +19,25 @@ import {
 import MobileIcon from '../../assets/vectors/mobile_icon.svg';
 import {
   COLOR_PRIMARY_ORANGE,
+  COLOR_PRIMARY_WHITE,
   COLOR_WHITE,
 } from '../../constants/ColorConstants';
 import PrimaryButton from '../../common/components/PrimaryButton';
 
-export default function LoginPageComponent() {
+const screenHeight = Dimensions.get('screen').height;
+const windowHeight = Dimensions.get('window').height;
+const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
+
+export default function LoginPageComponent(props) {
+  const onLogin = () => {
+    props.navigation.navigate('LoginMobileScreen');
+  };
   return (
     <SafeAreaView>
       <ScrollView>
-        <View>
+        <View style={styles.container}>
           <Slider images={SLIDER_IMAGES} text={TEXT_SLIDER} />
-          <PrimaryButton>
+          <PrimaryButton width="75%" onPress={onLogin}>
             <MobileIcon height={22} style={styles.SVG} />
             <Text style={styles.buttonText}>{TEXT_NUMBER_LOGIN}</Text>
           </PrimaryButton>
@@ -35,6 +51,10 @@ export default function LoginPageComponent() {
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    minHeight: screenHeight - navbarHeight,
+    backgroundColor: COLOR_PRIMARY_WHITE,
+  },
   helpText: {
     display: 'flex',
     alignSelf: 'center',

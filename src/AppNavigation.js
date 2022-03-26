@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import LoadingScreen from './screens/LoadingScreen';
 import LoginPage from './screens/LoginPage';
+import LoginMobilePage from './screens/LoginMobilePage';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -13,6 +14,7 @@ const AppNavigation = () => (
       initialRouteName="LoadingScreen">
       <Screen name="LoadingScreen" component={LoadingScreen}></Screen>
       <Screen name="LoginScreen" component={LoginPage}></Screen>
+      <Screen name="LoginMobileScreen" component={LoginMobilePage}></Screen>
     </Navigator>
   </NavigationContainer>
 );

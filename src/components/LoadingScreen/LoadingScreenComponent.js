@@ -17,7 +17,6 @@ import {
 } from '../../constants/ColorConstants';
 import {TEXT_LOGO, TEXT_TAP_CONTINUE} from '../../constants/TextConstants';
 
-// let ScreenHeight = Dimensions.get('window').height;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
