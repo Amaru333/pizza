@@ -1,19 +1,27 @@
 import React from 'react';
-import {StyleSheet, View, TouchableHighlight} from 'react-native';
+import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
 
 import {
   COLOR_PRIMARY_ORANGE,
+  COLOR_PRIMARY_ORANGE_DISABLED,
   COLOR_PRIMARY_WHITE,
-  COLOR_SECONDARY_ORANGE,
   COLOR_WHITE,
 } from '../../constants/ColorConstants';
 
-export default function SecondaryButton({children, onPress, width}) {
+export default function SecondaryButton({disabled, children, onPress, width}) {
   return (
     <View style={styles.buttonContainer}>
       <TouchableHighlight
-        style={[styles.buttonBackground, {width: width}]}
-        underlayColor={COLOR_WHITE}
+        disabled={disabled}
+        style={[
+          styles.buttonBackground,
+          {width: width},
+          disabled && {
+            backgroundColor: COLOR_PRIMARY_ORANGE_DISABLED,
+            borderColor: COLOR_PRIMARY_ORANGE_DISABLED,
+          },
+        ]}
+        underlayColor={COLOR_PRIMARY_WHITE}
         onPress={onPress}>
         <View style={styles.buttonTextContainer}>{children}</View>
       </TouchableHighlight>
@@ -22,7 +30,7 @@ export default function SecondaryButton({children, onPress, width}) {
 }
 const styles = StyleSheet.create({
   buttonBackground: {
-    backgroundColor: COLOR_PRIMARY_WHITE,
+    backgroundColor: COLOR_WHITE,
     display: 'flex',
     borderRadius: 10,
     elevation: 3,

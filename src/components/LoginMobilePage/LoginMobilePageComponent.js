@@ -38,23 +38,48 @@ const windowHeight = Dimensions.get('window').height;
 const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
 
 export default function LoginPageComponent(props) {
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [password, setPassword] = useState();
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const showNumber = () => {
-    console.log(phoneNumber);
+  const [loading, setLoading] = useState(false);
+
+  const loginUser = () => {
+    setLoading(true);
+    setErrorMessage('');
+    axios
+      .post('http://10.0.2.2:3000/api/user/login', {
+        phoneNumber: phoneNumber,
+        password: password,
+      })
+      .then(response => {
+        console.log(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err, err.response.data);
+        setErrorMessage(err.response.data.message);
+        setLoading(false);
+      });
   };
 
   const registerUser = () => {
+    setLoading(true);
+    setErrorMessage('');
     axios
       .post('http://10.0.2.2:3000/api/user/register', {
         phoneNumber: phoneNumber,
         password: password,
       })
       .then(response => {
-        console.log(response);
+        console.log(response.data);
+        setLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err, err.response.data);
+        setErrorMessage(err.response.data.message);
+        setLoading(false);
+      });
   };
 
   return (
@@ -81,11 +106,17 @@ export default function LoginPageComponent(props) {
               setValue={setPassword}
             />
           </View>
+          <View>
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
+          </View>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={showNumber} width={150}>
+            <PrimaryButton disabled={loading} onPress={loginUser} width={150}>
               <Text style={styles.verifyText}>{TEXT_LOGIN}</Text>
             </PrimaryButton>
-            <SecondaryButton onPress={registerUser} width={150}>
+            <SecondaryButton
+              disabled={loading}
+              onPress={registerUser}
+              width={150}>
               <Text style={styles.signUpText}>{TEXT_SIGN_UP}</Text>
             </SecondaryButton>
           </View>
@@ -104,6 +135,12 @@ const styles = StyleSheet.create({
   container: {
     minHeight: screenHeight - navbarHeight,
     backgroundColor: COLOR_PRIMARY_WHITE,
+  },
+  errorMessage: {
+    alignSelf: 'center',
+    position: 'absolute',
+    marginTop: 10,
+    color: COLOR_PRIMARY_ORANGE,
   },
   verifyText: {
     color: COLOR_PRIMARY_WHITE,
@@ -141,5 +178,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    marginTop: 15,
   },
 });

@@ -6,3 +6,5 @@ export const COLOR_LOADING_SCREEN_RED = '#B61827';
 export const COLOR_TEXT_INPUT = '#F5F5F5';
 export const COLOR_BLACK_50 = 'rgba(0, 0, 0, 0.5)';
 export const COLOR_PLACEHOLDER_TEXT = '#D8D8D8';
+export const COLOR_PRIMARY_ORANGE_DISABLED = '#FBE6E6';
+export const COLOR_PRIMARY_WHITE_DISABLED = '#C1C1C1';

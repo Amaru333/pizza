@@ -6,10 +6,16 @@ import {
   View,
 } from 'react-native';
 import LoadingScreenComponent from '../components/LoadingScreen/LoadingScreenComponent';
+import {useNavigation} from '@react-navigation/native';
 
 export default function LoadingScreen(props) {
+  const navigation = useNavigation();
+
   const pressLoadingScreen = () => {
-    props.navigation.navigate('LoginScreen');
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'LoginScreen'}],
+    });
   };
   return (
     <SafeAreaView>
