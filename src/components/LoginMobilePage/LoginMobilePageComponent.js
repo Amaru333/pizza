@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,12 +26,12 @@ import {
   TEXT_PHONE_NUMBER_PLACEHOLDER,
   TEXT_SIGN_UP,
   TEXT_TERMS_AND_CONDITIONS,
-  TEXT_VERIFY,
   TEXT_VERIFY_TERMS_1,
 } from '../../constants/TextConstants';
 import SecondaryButton from '../../common/components/SecondaryButton';
 
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
@@ -41,6 +41,7 @@ export default function LoginPageComponent(props) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [userToken, setUserToken] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -53,15 +54,35 @@ export default function LoginPageComponent(props) {
         password: password,
       })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
+        AsyncStorage.setItem('user_token', response.data.token);
+        AsyncStorage.setItem('_id', response.data._id);
+        props.navigation.navigate('AddDetailsScreen');
         setLoading(false);
       })
       .catch(err => {
-        console.log(err, err.response.data);
-        setErrorMessage(err.response.data.message);
+        console.log(err);
+        setErrorMessage(err);
         setLoading(false);
       });
   };
+
+  const getData = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem('user_token');
+
+      if (userToken !== null) {
+        setUserToken(userToken);
+      }
+    } catch (err) {
+      console.log(err);
+      setErrorMessage('Something went wrong');
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const registerUser = () => {
     setLoading(true);

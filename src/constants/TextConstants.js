@@ -28,3 +28,15 @@ export const TEXT_PASSWORD_PLACEHOLDER = '••••••••';
 export const TEXT_VERIFY_TERMS_1 =
   'By verifying your number you are agreeing to our';
 export const TEXT_TERMS_AND_CONDITIONS = 'Terms and Conditions.';
+
+//ADD DETAILS PAGE
+export const TEXT_ADD_DETAILS_HEADER = 'Add details';
+export const TEXT_ENTER_NAME = 'Enter your name';
+export const TEXT_ENTER_NAME_PLACEHOLDER = 'Name';
+export const TEXT_ENTER_ADDRESS = 'Enter your address';
+export const TEXT_ENTER_EMAIL = 'Enter your email address';
+export const TEXT_ENTER_EMAIL_PLACEHOLDER = 'example@mail.com';
+export const TEXT_ENTER_ADDRESS1_PLACEHOLDER = 'House No. / Name';
+export const TEXT_ENTER_ADDRESS2_PLACEHOLDER = 'Address';
+export const TEXT_CHOOSE_LOCATION = 'Choose Location';
+export const TEXT_SAVE_DETAILS = 'Save Details';

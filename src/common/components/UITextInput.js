@@ -7,6 +7,7 @@ import {
 } from '../../constants/ColorConstants';
 
 export default function UITextInput({
+  style,
   placeholder,
   maxLength,
   value,
@@ -15,7 +16,7 @@ export default function UITextInput({
   secureTextEntry,
 }) {
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <TextInput
         placeholderTextColor={COLOR_PLACEHOLDER_TEXT}
         keyboardType={type}

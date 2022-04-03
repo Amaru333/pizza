@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import LoadingScreen from './screens/LoadingScreen';
 import LoginPage from './screens/LoginPage';
 import LoginMobilePage from './screens/LoginMobilePage';
+import AddDetailsPage from './screens/AddDetailsPage';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ const AppNavigation = () => (
       <Screen name="LoadingScreen" component={LoadingScreen}></Screen>
       <Screen name="LoginScreen" component={LoginPage}></Screen>
       <Screen name="LoginMobileScreen" component={LoginMobilePage}></Screen>
+      <Screen name="AddDetailsScreen" component={AddDetailsPage}></Screen>
     </Navigator>
   </NavigationContainer>
 );
