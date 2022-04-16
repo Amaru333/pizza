@@ -27,11 +27,15 @@ import {
   TEXT_SIGN_UP,
   TEXT_TERMS_AND_CONDITIONS,
   TEXT_VERIFY_TERMS_1,
+  TEXT_WENT_WRONG,
 } from '../../constants/TextConstants';
 import SecondaryButton from '../../common/components/SecondaryButton';
 
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {useDispatch, useSelector} from 'react-redux';
+import {login, register, reset} from '../../redux/auth/authSlice';
+import LoadingSpinner from '../../common/components/LoadingSpinner';
 
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
@@ -45,26 +49,42 @@ export default function LoginPageComponent(props) {
 
   const [loading, setLoading] = useState(false);
 
-  const loginUser = () => {
-    setLoading(true);
-    setErrorMessage('');
-    axios
-      .post('http://10.0.2.2:3000/api/user/login', {
-        phoneNumber: phoneNumber,
-        password: password,
-      })
-      .then(response => {
-        // console.log(response.data);
-        AsyncStorage.setItem('user_token', response.data.token);
-        AsyncStorage.setItem('_id', response.data._id);
+  const dispatch = useDispatch();
+  const {user, isLoading, isError, isSuccess, message} = useSelector(
+    state => state.auth,
+  );
+
+  useEffect(() => {
+    if (isError) {
+      setErrorMessage(message);
+    }
+
+    if (isSuccess || user) {
+      if (
+        user.address.addressLine1 != null &&
+        user.address.addressLine2 != null &&
+        user.email != null &&
+        user.name != null
+      ) {
+        props.navigation.reset({
+          index: 0,
+          routes: [{name: 'HomeScreen'}],
+        });
+      } else {
         props.navigation.navigate('AddDetailsScreen');
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-        setErrorMessage(err);
-        setLoading(false);
-      });
+      }
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, dispatch]);
+
+  const loginUser = () => {
+    setErrorMessage('');
+    const userData = {
+      phoneNumber,
+      password,
+    };
+    dispatch(login(userData));
   };
 
   const getData = async () => {
@@ -76,7 +96,7 @@ export default function LoginPageComponent(props) {
       }
     } catch (err) {
       console.log(err);
-      setErrorMessage('Something went wrong');
+      setErrorMessage(TEXT_WENT_WRONG);
     }
   };
 
@@ -85,26 +105,17 @@ export default function LoginPageComponent(props) {
   }, []);
 
   const registerUser = () => {
-    setLoading(true);
     setErrorMessage('');
-    axios
-      .post('http://10.0.2.2:3000/api/user/register', {
-        phoneNumber: phoneNumber,
-        password: password,
-      })
-      .then(response => {
-        console.log(response.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err, err.response.data);
-        setErrorMessage(err.response.data.message);
-        setLoading(false);
-      });
+    const userData = {
+      phoneNumber,
+      password,
+    };
+    dispatch(register(userData));
   };
 
   return (
     <SafeAreaView>
+      <LoadingSpinner loading={isLoading} />
       <ScrollView>
         <View style={styles.container}>
           <Header navigation={props.navigation}>

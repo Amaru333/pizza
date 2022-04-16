@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Dimensions,
   View,
+  Button,
 } from 'react-native';
 import {useState} from 'react';
 import {

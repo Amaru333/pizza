@@ -9,18 +9,20 @@ import {
 
 import BackArrow from '../../assets/vectors/back_arrow.svg';
 
-export default function Header({children, navigation}) {
+export default function Header({children, navigation, goBackIcon = true}) {
   const goBack = () => {
     navigation.goBack();
   };
   return (
     <View style={styles.headerContainer}>
-      <TouchableHighlight
-        style={styles.arrowSVG}
-        underlayColor={COLOR_SECONDARY_ORANGE}
-        onPress={goBack}>
-        <BackArrow />
-      </TouchableHighlight>
+      {goBackIcon && (
+        <TouchableHighlight
+          style={styles.arrowSVG}
+          underlayColor={COLOR_SECONDARY_ORANGE}
+          onPress={goBack}>
+          <BackArrow />
+        </TouchableHighlight>
+      )}
       <Text style={styles.headerText}>{children}</Text>
     </View>
   );

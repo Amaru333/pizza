@@ -18,7 +18,6 @@ import {
 import {
   TEXT_ADD_DETAILS_HEADER,
   TEXT_CHOOSE_LOCATION,
-  TEXT_CONTACT_US,
   TEXT_ENTER_ADDRESS,
   TEXT_ENTER_ADDRESS1_PLACEHOLDER,
   TEXT_ENTER_ADDRESS2_PLACEHOLDER,
@@ -26,37 +25,41 @@ import {
   TEXT_ENTER_EMAIL_PLACEHOLDER,
   TEXT_ENTER_NAME,
   TEXT_ENTER_NAME_PLACEHOLDER,
-  TEXT_ENTER_NUMBER,
-  TEXT_ENTER_PIN,
-  TEXT_LOGIN,
-  TEXT_LOGIN_MOBILE_HEADER,
-  TEXT_PASSWORD_PLACEHOLDER,
-  TEXT_PHONE_NUMBER_PLACEHOLDER,
   TEXT_SAVE_DETAILS,
+  TEXT_WENT_WRONG,
 } from '../../constants/TextConstants';
-import SecondaryButton from '../../common/components/SecondaryButton';
 
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
 import MapPointer from '../../assets/vectors/map_pointer.svg';
+import {useSelector} from 'react-redux';
 
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
 
 export default function AddDetails(props) {
-  const [name, setName] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
+  let userDetails = useSelector(state => state.auth.user);
+
+  const [userData, setUserData] = useState({
+    name: userDetails.name || '',
+    address: {
+      addressLine1: userDetails.address.addressLine1 || '',
+      addressLine2: userDetails.address.addressLine2 || '',
+      latitude: userDetails.address.latitude || 0,
+      longitude: userDetails.address.longitude || 0,
+    },
+    email: userDetails.email || '',
+  });
+
   const [errorMessage, setErrorMessage] = useState('');
   const [locationName, setLocationName] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
-  const [userToken, setUserToken] = useState('');
-  const [userId, setUserId] = useState('');
   const [loading, setLoading] = useState(false);
+
+  let userId = useSelector(state => state.auth.user._id);
+  let userToken = useSelector(state => state.auth.user.token);
 
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 0,
@@ -64,25 +67,6 @@ export default function AddDetails(props) {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
-
-  const getData = async () => {
-    try {
-      const userToken = await AsyncStorage.getItem('user_token');
-      const userId = await AsyncStorage.getItem('_id');
-      if ((userToken && userId) !== null) {
-        setUserToken(userToken);
-        setUserId(userId);
-        console.log(userToken, userId);
-      }
-    } catch (err) {
-      console.log(err);
-      setErrorMessage('Something went wrong');
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const saveDetails = () => {
     setLoading(true);
@@ -92,11 +76,11 @@ export default function AddDetails(props) {
       .patch(
         'http://10.0.2.2:3000/api/user/update-details',
         {
-          name: name,
+          name: userData.name,
           _id: userId,
-          email: emailAddress,
-          addressLine1: addressLine1,
-          addressLine2: addressLine2,
+          email: userData.email,
+          addressLine1: userData.address.addressLine1,
+          addressLine2: userData.address.addressLine2,
           latitude: currentLocation.latitude,
           longitude: currentLocation.longitude,
         },
@@ -111,13 +95,12 @@ export default function AddDetails(props) {
         setLoading(false);
       })
       .catch(err => {
-        console.log(err);
+        setErrorMessage(err.response.data.message);
         setLoading(false);
       });
   };
 
   useEffect(() => {
-    console.log('test');
     Geolocation.getCurrentPosition(info =>
       setCurrentLocation({
         ...currentLocation,
@@ -140,7 +123,7 @@ export default function AddDetails(props) {
           setLoading(false);
         })
         .catch(err => {
-          setErrorMessage('Something went wrong');
+          setErrorMessage(TEXT_WENT_WRONG);
           setLoading(false);
         });
     }, 20);
@@ -152,7 +135,7 @@ export default function AddDetails(props) {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-          <Header navigation={props.navigation}>
+          <Header navigation={props.navigation} goBackIcon={false}>
             {TEXT_ADD_DETAILS_HEADER}
           </Header>
           <View style={styles.inputViewContainer}>
@@ -160,29 +143,39 @@ export default function AddDetails(props) {
             <UITextInput
               placeholder={TEXT_ENTER_NAME_PLACEHOLDER}
               maxLength={256}
-              value={name}
-              setValue={setName}
+              value={userData.name}
+              setValue={val => setUserData({...userData, name: val})}
             />
             <Text style={styles.textTitle}>{TEXT_ENTER_EMAIL}</Text>
             <UITextInput
               placeholder={TEXT_ENTER_EMAIL_PLACEHOLDER}
               maxLength={100}
-              value={emailAddress}
-              setValue={setEmailAddress}
+              value={userData.email}
+              setValue={val => setUserData({...userData, email: val})}
             />
             <Text style={styles.textTitle}>{TEXT_ENTER_ADDRESS}</Text>
             <UITextInput
               placeholder={TEXT_ENTER_ADDRESS1_PLACEHOLDER}
               maxLength={100}
-              value={addressLine1}
-              setValue={setAddressLine1}
+              value={userData.address.addressLine1}
+              setValue={val =>
+                setUserData({
+                  ...userData,
+                  address: {...userData.address, addressLine1: val},
+                })
+              }
             />
             <UITextInput
               style={{marginTop: 10}}
               placeholder={TEXT_ENTER_ADDRESS2_PLACEHOLDER}
               maxLength={150}
-              value={addressLine2}
-              setValue={setAddressLine2}
+              value={userData.address.addressLine2}
+              setValue={val =>
+                setUserData({
+                  ...userData,
+                  address: {...userData.address, addressLine2: val},
+                })
+              }
             />
             <Text style={styles.textTitle}>{TEXT_CHOOSE_LOCATION}</Text>
 
@@ -256,6 +249,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 15,
+    marginVertical: 15,
   },
 });

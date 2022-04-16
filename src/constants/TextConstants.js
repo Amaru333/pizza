@@ -1,3 +1,6 @@
+//COMMON
+export const TEXT_WENT_WRONG = 'Something went wrong';
+
 //LOGO
 export const TEXT_LOGO = 'pizza';
 
