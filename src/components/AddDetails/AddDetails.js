@@ -34,32 +34,34 @@ import MapView from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
 import MapPointer from '../../assets/vectors/map_pointer.svg';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import LoadingSpinner from '../../common/components/LoadingSpinner';
+import {addUserInfo, reset} from '../../redux/auth/authSlice';
 
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
 
 export default function AddDetails(props) {
-  let userDetails = useSelector(state => state.auth.user);
+  const {user, isLoading, isError, isSuccess, message, addDetailsSuccess} =
+    useSelector(state => state.auth);
+
+  const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
-    name: userDetails.name || '',
+    name: user?.name || '',
     address: {
-      addressLine1: userDetails.address.addressLine1 || '',
-      addressLine2: userDetails.address.addressLine2 || '',
-      latitude: userDetails.address.latitude || 0,
-      longitude: userDetails.address.longitude || 0,
+      addressLine1: user.address.addressLine1 || '',
+      addressLine2: user.address.addressLine2 || '',
+      latitude: user.address.latitude || 0,
+      longitude: user.address.longitude || 0,
     },
-    email: userDetails.email || '',
+    email: user?.email || '',
   });
 
   const [errorMessage, setErrorMessage] = useState('');
   const [locationName, setLocationName] = useState('');
   const [loading, setLoading] = useState(false);
-
-  let userId = useSelector(state => state.auth.user._id);
-  let userToken = useSelector(state => state.auth.user.token);
 
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 0,
@@ -68,36 +70,37 @@ export default function AddDetails(props) {
     longitudeDelta: 0.0421,
   });
 
+  useEffect(() => {
+    if (isError) {
+      setErrorMessage(message);
+    }
+
+    if (addDetailsSuccess == 'add-details-success') {
+      props.navigation.reset({
+        index: 0,
+        routes: [{name: 'HomeScreen'}],
+      });
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, dispatch]);
+
   const saveDetails = () => {
-    setLoading(true);
     setErrorMessage('');
 
-    axios
-      .patch(
-        'http://10.0.2.2:3000/api/user/update-details',
-        {
-          name: userData.name,
-          _id: userId,
-          email: userData.email,
-          addressLine1: userData.address.addressLine1,
-          addressLine2: userData.address.addressLine2,
-          latitude: currentLocation.latitude,
-          longitude: currentLocation.longitude,
-        },
-        {
-          headers: {
-            'auth-token': userToken,
-          },
-        },
-      )
-      .then(response => {
-        console.log(response);
-        setLoading(false);
-      })
-      .catch(err => {
-        setErrorMessage(err.response.data.message);
-        setLoading(false);
-      });
+    const userInfo = {
+      data: {
+        name: userData.name,
+        _id: user._id,
+        email: userData.email,
+        addressLine1: userData.address.addressLine1,
+        addressLine2: userData.address.addressLine2,
+        latitude: currentLocation.latitude,
+        longitude: currentLocation.longitude,
+      },
+      token: user.token,
+    };
+    dispatch(addUserInfo(userInfo));
   };
 
   useEffect(() => {
@@ -128,11 +131,15 @@ export default function AddDetails(props) {
         });
     }, 20);
 
-    return () => clearTimeout(getLocationName);
+    return () => {
+      clearTimeout(getLocationName);
+      mounted = false;
+    };
   }, [currentLocation]);
 
   return (
     <SafeAreaView>
+      <LoadingSpinner loading={isLoading} />
       <ScrollView>
         <View style={styles.container}>
           <Header navigation={props.navigation} goBackIcon={false}>

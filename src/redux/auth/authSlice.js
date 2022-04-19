@@ -9,6 +9,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
+  addDetailsSuccess: '',
 };
 
 //Register user
@@ -46,6 +47,19 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 });
 
+//Add user information
+export const addUserInfo = createAsyncThunk(
+  'auth/addUserInfo',
+  async (details, thunkAPI) => {
+    try {
+      return await authService.addUserInfo(details);
+    } catch (error) {
+      const message = error.response.data.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  },
+);
+
 //Logout user
 export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();
@@ -60,6 +74,7 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.message = '';
+      state.addDetailsSuccess = '';
     },
     setUser: (state, action) => {
       state.user = action.payload;
@@ -111,6 +126,21 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.user = null;
+      })
+      .addCase(addUserInfo.pending, state => {
+        state.isLoading = true;
+        state.addDetailsSuccess = '';
+      })
+      .addCase(addUserInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = {...state.user, ...action.payload};
+        state.addDetailsSuccess = 'add-details-success';
+      })
+      .addCase(addUserInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

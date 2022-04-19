@@ -17,6 +17,11 @@ export default function LoadingScreen(props) {
     console.log(user, 'USER');
     if (user != null) {
       if (
+        user.address &&
+        user.address.addressLine1 &&
+        user.address.addressLine2 &&
+        user.email &&
+        user.name &&
         user.address.addressLine1 != '' &&
         user.address.addressLine2 != '' &&
         user.email != '' &&

@@ -4,6 +4,7 @@ import {
   API_GET_USER_DETAILS,
   API_LOGIN_USER,
   API_REGISTER_USER,
+  API_UDPATE_USER_DETAILS,
 } from '../../constants/APIEndpointConstants';
 
 //Register user
@@ -28,6 +29,37 @@ const login = async userData => {
   }
 
   return response.data;
+};
+
+//Add user information
+const addUserInfo = async userInfo => {
+  console.log(userInfo);
+  const response = await axios.patch(
+    API_UDPATE_USER_DETAILS,
+    {
+      addressLine1: userInfo.data.addressLine1,
+      addressLine2: userInfo.data.addressLine2,
+      email: userInfo.data.email,
+      latitude: userInfo.data.latitude,
+      longitude: userInfo.data.longitude,
+      name: userInfo.data.name,
+      _id: userInfo.data._id,
+    },
+    {
+      headers: {
+        'auth-token': userInfo.token,
+      },
+    },
+  );
+  console.log(response);
+
+  if (response.data) {
+    let user = response.data;
+    user.token = userInfo.token;
+    AsyncStorage.setItem('user', JSON.stringify(user));
+
+    return response.data;
+  }
 };
 
 //Set user details
@@ -71,6 +103,7 @@ const authService = {
   login,
   logout,
   setUserDetails,
+  addUserInfo,
 };
 
 export default authService;
