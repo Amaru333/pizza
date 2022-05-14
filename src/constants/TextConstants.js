@@ -43,3 +43,23 @@ export const TEXT_ENTER_ADDRESS1_PLACEHOLDER = 'House No. / Name';
 export const TEXT_ENTER_ADDRESS2_PLACEHOLDER = 'Address';
 export const TEXT_CHOOSE_LOCATION = 'Choose Location';
 export const TEXT_SAVE_DETAILS = 'Save Details';
+
+//SEARCH BAR
+export const TEXT_SEARCH_FOR_PIZZA = 'Search for pizzas';
+
+//HOME PAGE SLIDER
+export const TEXT_HOME_PAGE_SLIDER_2 = [
+  'Get delicious homemade pizza right at your doorstep',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  'sed do eiusmod tempor incididunt ut labore et dolore',
+  'Tu tu du dudu Dora! Tu tu du dudu Dora?',
+];
+export const TEXT_HOME_PAGE_SLIDER_1 = [
+  '40% OFF',
+  'Lorem',
+  'Gracias',
+  'DORA TEH EXLOPER',
+];
+
+//PRODUCT PAGE
+export const TEXT_CHOOSE_PIZZA = 'Choose Pizza';

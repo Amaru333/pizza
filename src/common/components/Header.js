@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 20,
   },
   arrowSVG: {
     padding: 8,

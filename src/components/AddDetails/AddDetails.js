@@ -251,6 +251,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     marginHorizontal: '5%',
+    marginTop: 58,
   },
   buttonContainer: {
     display: 'flex',

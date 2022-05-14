@@ -1,15 +1,16 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import LoadingScreen from './screens/LoadingScreen';
-import LoginPage from './screens/LoginPage';
-import LoginMobilePage from './screens/LoginMobilePage';
-import AddDetailsPage from './screens/AddDetailsPage';
-import HomePage from './screens/HomePage';
+import LoadingScreen from '../screens/LoadingScreen';
+import LoginPage from '../screens/LoginPage';
+import LoginMobilePage from '../screens/LoginMobilePage';
+import AddDetailsPage from '../screens/AddDetailsPage';
+import ProductPage from '../screens/ProductPage';
+import TabNavigator from './TabNavigation';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
-const AppNavigation = () => (
+const AppNavigator = () => (
   <NavigationContainer>
     <Navigator
       screenOptions={{headerShown: false}}
@@ -18,9 +19,10 @@ const AppNavigation = () => (
       <Screen name="LoginScreen" component={LoginPage}></Screen>
       <Screen name="LoginMobileScreen" component={LoginMobilePage}></Screen>
       <Screen name="AddDetailsScreen" component={AddDetailsPage}></Screen>
-      <Screen name="HomeScreen" component={HomePage}></Screen>
+      <Screen name="HomeScreen" component={TabNavigator}></Screen>
+      <Screen name="ProductPageScreen" component={ProductPage}></Screen>
     </Navigator>
   </NavigationContainer>
 );
 
-export default AppNavigation;
+export {AppNavigator};

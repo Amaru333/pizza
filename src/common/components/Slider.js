@@ -6,7 +6,6 @@ import {
   ImageBackground,
   Dimensions,
   View,
-  Button,
 } from 'react-native';
 import {useState} from 'react';
 import {
@@ -19,14 +18,14 @@ import {
 const {width} = Dimensions.get('window');
 const height = width * 1;
 
-export default function Slider({images, text}) {
+export default function Slider({headerText, images, text, type = 'loading'}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // const {value} = useSelector(state => state.counter);
   // const dispatch = useDispatch();
 
   const changeCarousel = ({nativeEvent}) => {
-    const slide = Math.ceil(
+    const slide = Math.floor(
       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
     );
     if (slide !== currentImageIndex) {
@@ -37,15 +36,39 @@ export default function Slider({images, text}) {
   return (
     <View>
       <ScrollView
-        style={styles.scrollview}
+        style={[
+          styles.scrollview,
+          {height: type == 'loading' ? height : height - 100},
+        ]}
         horizontal
         pagingEnabled
         onScroll={changeCarousel}
         showsHorizontalScrollIndicator={false}>
         {images.map((imageValue, index) => (
-          <ImageBackground style={styles.image} key={index} source={imageValue}>
-            <View style={styles.imageOpacity}>
-              <Text style={styles.textOverlay}>{text[index]}</Text>
+          <ImageBackground
+            style={[
+              styles.image,
+              {height: type == 'loading' ? height : height - 100},
+              {borderBottomLeftRadius: type == 'product' ? 0 : 15},
+              {borderBottomRightRadius: type == 'product' ? 0 : 15},
+            ]}
+            key={index}
+            source={imageValue}>
+            <View style={type != 'product' && styles.imageOpacity}>
+              {type == 'loading' ? (
+                <Text style={styles.textOverlay}>
+                  {text ? text[index] : ''}
+                </Text>
+              ) : (
+                <View style={styles.multiTextView}>
+                  <Text style={styles.headerText}>
+                    {headerText ? headerText[index] : ''}
+                  </Text>
+                  <Text style={styles.descriptionText}>
+                    {text ? text[index] : ''}
+                  </Text>
+                </View>
+              )}
             </View>
           </ImageBackground>
         ))}
@@ -61,9 +84,6 @@ export default function Slider({images, text}) {
           </Text>
         ))}
       </View>
-      {/* <Text>{value}</Text>
-      <Button title="Increase" onPress={() => dispatch(increment())} />
-      <Button title="Decrease" onPress={() => dispatch(decrement())} /> */}
     </View>
   );
 }
@@ -73,12 +93,27 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 15,
     resizeMode: 'cover',
     width: width,
-    height: height,
     overflow: 'hidden',
+  },
+  multiTextView: {
+    display: 'flex',
+    height: '80%',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+  headerText: {
+    fontSize: 40,
+    fontFamily: 'Poppins-Bold',
+    color: COLOR_PRIMARY_ORANGE,
+  },
+  descriptionText: {
+    fontSize: 20,
+    fontFamily: 'Poppins-Regular',
+    color: COLOR_PRIMARY_WHITE,
   },
   scrollview: {
     width: width,
-    height: height,
   },
   imageOpacity: {
     flex: 1,

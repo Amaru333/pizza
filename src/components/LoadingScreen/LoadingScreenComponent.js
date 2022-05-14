@@ -20,6 +20,7 @@ import {TEXT_LOGO, TEXT_TAP_CONTINUE} from '../../constants/TextConstants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from 'react-redux';
 import {setUser, setUserDetails} from '../../redux/auth/authSlice';
+import images from '../../constants/ImageConstants';
 
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
@@ -46,7 +47,7 @@ export default function LoadingScreenComponent() {
       <ScrollView>
         <View style={styles.background}>
           <Text style={styles.logo}>{TEXT_LOGO}</Text>
-          <Image source={require('../../assets/images/common/logo.png')} />
+          <Image source={images.IMG_LOGO} />
           <BlinkingText duration={1000}>
             <Text style={styles.tapText}>{TEXT_TAP_CONTINUE}</Text>
           </BlinkingText>
