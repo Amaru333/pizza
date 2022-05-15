@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -22,6 +22,24 @@ import {HOME_PAGE_SLIDER_IMAGES} from '../../constants/ImageConstants';
 let ScreenHeight = Dimensions.get('window').height;
 
 export default function ProductPageComponent() {
+  const varities = [
+    {
+      type: 'Medium',
+      tag: 'med',
+      price: 199,
+    },
+    {
+      type: 'Small',
+      tag: 'sm',
+      price: 149,
+    },
+    {
+      type: 'Large',
+      tag: 'lar',
+      price: 299,
+    },
+  ];
+  const [variety, setVariety] = useState(varities[0].tag);
   return (
     <SafeAreaView>
       <View style={styles.productPageContainer}>
@@ -33,14 +51,24 @@ export default function ProductPageComponent() {
             <View style={styles.ingredientsContainer}>
               <Text style={styles.ingredients}>Ingredients: </Text>
               <Text style={styles.ingredientsContent}>
-                Fresh Basil with Tomato and Mozarella
+                Fresh Basil with Tomato and some Mozarella
               </Text>
             </View>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <PriceTag text="Medium" price={199} active={true} />
+            {varities.map((varietyName, index) => (
+              <PriceTag
+                text={varietyName.type}
+                price={varietyName.price}
+                variety={varietyName.tag}
+                active={varietyName.tag == variety}
+                key={index}
+                setVariety={setVariety}
+              />
+            ))}
+            {/* <PriceTag text="Medium" price={199} active={true} />
             <PriceTag text="Small" price={199} active={false} />
-            <PriceTag text="Large" price={199} active={false} />
+            <PriceTag text="Large" price={199} active={false} /> */}
           </ScrollView>
           <View style={styles.buttonContainer}>
             <View style={styles.flex1}>
@@ -102,11 +130,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   addButton: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
     color: COLOR_PRIMARY_WHITE,
   },
   customizeButton: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
     color: COLOR_PRIMARY_ORANGE,
   },
 });

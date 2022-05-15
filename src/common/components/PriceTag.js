@@ -1,26 +1,34 @@
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {
   COLOR_PRIMARY_ORANGE,
   COLOR_PRIMARY_WHITE_DISABLED,
 } from '../../constants/ColorConstants';
 
-const PriceTag = ({text, price, active}) => {
+const PriceTag = ({text, price, active, setVariety, variety}) => {
   let activeColor = active
     ? COLOR_PRIMARY_ORANGE
     : COLOR_PRIMARY_WHITE_DISABLED;
   return (
     <SafeAreaView>
-      <View
-        style={[
-          styles.priceTagWrapper,
-          {
-            borderColor: activeColor,
-          },
-        ]}>
-        <Text style={[{color: activeColor}, styles.titleText]}>{text}</Text>
-        <Text style={[{color: activeColor}]}>₹{price}</Text>
-      </View>
+      <TouchableOpacity onPress={() => setVariety(variety)}>
+        <View
+          style={[
+            styles.priceTagWrapper,
+            {
+              borderColor: activeColor,
+            },
+          ]}>
+          <Text style={[{color: activeColor}, styles.titleText]}>{text}</Text>
+          <Text style={[{color: activeColor}]}>₹{price}</Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
