@@ -66,9 +66,6 @@ export default function ProductPageComponent() {
                 setVariety={setVariety}
               />
             ))}
-            {/* <PriceTag text="Medium" price={199} active={true} />
-            <PriceTag text="Small" price={199} active={false} />
-            <PriceTag text="Large" price={199} active={false} /> */}
           </ScrollView>
           <View style={styles.buttonContainer}>
             <View style={styles.flex1}>
