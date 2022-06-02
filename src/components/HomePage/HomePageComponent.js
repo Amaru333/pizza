@@ -32,44 +32,156 @@ export default function HomePageComponent(props) {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
-          price: 239,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
       ],
     },
@@ -83,44 +195,156 @@ export default function HomePageComponent(props) {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
-          price: 239,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
       ],
     },
@@ -134,44 +358,156 @@ export default function HomePageComponent(props) {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
-          price: 239,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
           description: 'Fresh Basil with Tomato and Mozarella',
-          price: 199,
+          price: [
+            {
+              type: 'Medium',
+              tag: 'med',
+              price: 199,
+            },
+            {
+              type: 'Small',
+              tag: 'sm',
+              price: 149,
+            },
+            {
+              type: 'Large',
+              tag: 'lar',
+              price: 299,
+            },
+          ],
         },
       ],
     },

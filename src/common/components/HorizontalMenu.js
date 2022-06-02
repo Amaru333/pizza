@@ -2,12 +2,9 @@ import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
-  Button,
+  TouchableWithoutFeedback,
   Text,
-  TextInput,
-  Dimensions,
   View,
 } from 'react-native';
 import VegIcon from '../../assets/vectors/veg_icon.svg';
@@ -62,6 +59,9 @@ export default function HorizontalMenu(props) {
   //     price: 199,
   //   },
   // ];
+  const navigateToCategoryPage = () => {
+    props.navigation.navigate('ProductCategoryScreen');
+  };
   const productData = props.data.products;
   return (
     <SafeAreaView>
@@ -74,7 +74,9 @@ export default function HorizontalMenu(props) {
               {props.data.icon == 'veg' && <VegIcon />}
               {props.data.icon == 'non_veg' && <NonVegIcon />}
             </Text>
-            <Text style={styles.viewAllText}>View all {`>`}</Text>
+            <TouchableWithoutFeedback onPress={navigateToCategoryPage}>
+              <Text style={styles.viewAllText}>View all {`>`}</Text>
+            </TouchableWithoutFeedback>
           </View>
           <ScrollView horizontal style={styles.scollContainer}>
             {productData.map(product => (

@@ -63,3 +63,6 @@ export const TEXT_HOME_PAGE_SLIDER_1 = [
 
 //PRODUCT PAGE
 export const TEXT_CHOOSE_PIZZA = 'Choose Pizza';
+
+//PRODUCT CATEGORY PAGE
+// export const TEXT_CHOOSE_PIZZA = 'Choose Pizza';

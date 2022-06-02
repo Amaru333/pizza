@@ -87,7 +87,6 @@ export default function ProductPageComponent() {
 const styles = StyleSheet.create({
   productPageContainer: {
     minHeight: ScreenHeight,
-    // marginBottom: 70,
     marginTop: 50,
   },
   descriptionContainer: {

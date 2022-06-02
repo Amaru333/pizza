@@ -49,7 +49,9 @@ export default function HorizontalMenu(props) {
               <View>
                 <PrimaryButton width="85%" onPress={() => console.log('bruh')}>
                   <CartIcon />
-                  <Text style={styles.priceTag}>₹{props.data.price}</Text>
+                  <Text style={styles.priceTag}>
+                    ₹{props.data.price[0].price}
+                  </Text>
                 </PrimaryButton>
               </View>
             </View>

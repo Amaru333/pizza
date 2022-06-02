@@ -7,6 +7,7 @@ import LoginMobilePage from '../screens/LoginMobilePage';
 import AddDetailsPage from '../screens/AddDetailsPage';
 import ProductPage from '../screens/ProductPage';
 import TabNavigator from './TabNavigation';
+import ProductCategoryPage from '../screens/ProductCategoryPage';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -21,6 +22,9 @@ const AppNavigator = () => (
       <Screen name="AddDetailsScreen" component={AddDetailsPage}></Screen>
       <Screen name="HomeScreen" component={TabNavigator}></Screen>
       <Screen name="ProductPageScreen" component={ProductPage}></Screen>
+      <Screen
+        name="ProductCategoryScreen"
+        component={ProductCategoryPage}></Screen>
     </Navigator>
   </NavigationContainer>
 );
