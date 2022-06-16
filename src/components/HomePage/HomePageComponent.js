@@ -31,6 +31,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -53,6 +54,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
+          rating: 2,
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
           price: [
@@ -76,6 +78,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 5,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -98,6 +101,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 4,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -120,6 +124,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 1,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -142,6 +147,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 0,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -164,6 +170,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -194,6 +201,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -216,6 +224,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
+          rating: 3,
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
           price: [
@@ -239,6 +248,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -261,6 +271,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -283,6 +294,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -305,6 +317,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -327,6 +340,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -357,6 +371,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -379,6 +394,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_2,
           title: 'Chilly Veg',
+          rating: 3,
           description:
             'Oregano, Corn, Pepperoni and Mozarella, bruh, yes, no, ok',
           price: [
@@ -402,6 +418,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -424,6 +441,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -446,6 +464,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -468,6 +487,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -490,6 +510,7 @@ export default function HomePageComponent(props) {
         {
           image: images.IMG_PIZZA_1,
           title: 'Basil & Tomato',
+          rating: 3,
           description: 'Fresh Basil with Tomato and Mozarella',
           price: [
             {
@@ -521,8 +542,13 @@ export default function HomePageComponent(props) {
           images={HOME_PAGE_SLIDER_IMAGES}
           type="home"
         />
-        {homePageData.map(category => (
-          <HorizontalMenu data={category} navigation={props.navigation} />
+        {homePageData.map((category, index) => (
+          <HorizontalMenu
+            key={index}
+            data={category}
+            navigation={props.navigation}
+            route={props.route}
+          />
         ))}
         <View style={styles.buttonBruh}>
           <Button title="Pls logout" onPress={logoutUser} />

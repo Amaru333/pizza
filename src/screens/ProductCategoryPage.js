@@ -6,9 +6,14 @@ import ProductCategoryComponent from '../components/ProductCategory/ProductCateg
 export default function ProductCategoryPage(props) {
   return (
     <SafeAreaView>
-      <Header navigation={props.navigation}>Popular Choices</Header>
+      <Header navigation={props.navigation}>
+        {props?.route?.params?.data?.heading}
+      </Header>
       <ScrollView>
-        <ProductCategoryComponent navigation={props.navigation} />
+        <ProductCategoryComponent
+          route={props.route}
+          navigation={props.navigation}
+        />
       </ScrollView>
     </SafeAreaView>
   );

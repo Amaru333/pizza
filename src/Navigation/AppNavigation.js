@@ -21,10 +21,6 @@ const AppNavigator = () => (
       <Screen name="LoginMobileScreen" component={LoginMobilePage}></Screen>
       <Screen name="AddDetailsScreen" component={AddDetailsPage}></Screen>
       <Screen name="HomeScreen" component={TabNavigator}></Screen>
-      <Screen name="ProductPageScreen" component={ProductPage}></Screen>
-      <Screen
-        name="ProductCategoryScreen"
-        component={ProductCategoryPage}></Screen>
     </Navigator>
   </NavigationContainer>
 );

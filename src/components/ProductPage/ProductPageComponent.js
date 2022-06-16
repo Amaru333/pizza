@@ -21,42 +21,27 @@ import {HOME_PAGE_SLIDER_IMAGES} from '../../constants/ImageConstants';
 
 let ScreenHeight = Dimensions.get('window').height;
 
-export default function ProductPageComponent() {
-  const varities = [
-    {
-      type: 'Medium',
-      tag: 'med',
-      price: 199,
-    },
-    {
-      type: 'Small',
-      tag: 'sm',
-      price: 149,
-    },
-    {
-      type: 'Large',
-      tag: 'lar',
-      price: 299,
-    },
-  ];
-  const [variety, setVariety] = useState(varities[0].tag);
+export default function ProductPageComponent(props) {
+  const productData = props?.route?.params?.data;
+  const [variety, setVariety] = useState(productData.price[0].tag);
+
   return (
     <SafeAreaView>
       <View style={styles.productPageContainer}>
         <Slider images={HOME_PAGE_SLIDER_IMAGES} type="product" />
         <View>
           <View style={styles.descriptionContainer}>
-            <Text style={styles.heading}>Basil & Tomato</Text>
-            <RenderRating rating={3} />
+            <Text style={styles.heading}>{productData.title}</Text>
+            <RenderRating rating={productData.rating} />
             <View style={styles.ingredientsContainer}>
               <Text style={styles.ingredients}>Ingredients: </Text>
               <Text style={styles.ingredientsContent}>
-                Fresh Basil with Tomato and some Mozarella
+                {productData.description}
               </Text>
             </View>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {varities.map((varietyName, index) => (
+            {productData.price.map((varietyName, index) => (
               <PriceTag
                 text={varietyName.type}
                 price={varietyName.price}

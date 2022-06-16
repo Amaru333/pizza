@@ -9,7 +9,7 @@ export default function HomePage(props) {
     <SafeAreaView>
       <SearchHeader />
       <ScrollView>
-        <HomePageComponent navigation={props.navigation} />
+        <HomePageComponent route={props.route} navigation={props.navigation} />
       </ScrollView>
     </SafeAreaView>
   );

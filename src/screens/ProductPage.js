@@ -9,7 +9,10 @@ export default function ProductPage(props) {
     <SafeAreaView>
       <Header navigation={props.navigation}>{TEXT_CHOOSE_PIZZA}</Header>
       <ScrollView>
-        <ProductPageComponent navigation={props.navigation} />
+        <ProductPageComponent
+          route={props.route}
+          navigation={props.navigation}
+        />
       </ScrollView>
     </SafeAreaView>
   );

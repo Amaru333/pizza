@@ -60,7 +60,9 @@ export default function HorizontalMenu(props) {
   //   },
   // ];
   const navigateToCategoryPage = () => {
-    props.navigation.navigate('ProductCategoryScreen');
+    props.navigation.navigate('ProductCategoryScreen', {
+      data: props.data,
+    });
   };
   const productData = props.data.products;
   return (
@@ -79,8 +81,12 @@ export default function HorizontalMenu(props) {
             </TouchableWithoutFeedback>
           </View>
           <ScrollView horizontal style={styles.scollContainer}>
-            {productData.map(product => (
-              <ProductCard data={product} navigation={props.navigation} />
+            {productData.map((product, index) => (
+              <ProductCard
+                key={index}
+                data={product}
+                navigation={props.navigation}
+              />
             ))}
           </ScrollView>
         </View>

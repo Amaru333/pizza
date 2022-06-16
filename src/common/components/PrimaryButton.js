@@ -8,14 +8,21 @@ import {
   COLOR_WHITE,
 } from '../../constants/ColorConstants';
 
-export default function PrimaryButton({disabled, children, onPress, width}) {
+export default function PrimaryButton({
+  disabled,
+  children,
+  onPress,
+  width,
+  style,
+  marginTop = 30,
+}) {
   return (
-    <View style={styles.buttonContainer}>
+    <View style={[styles.buttonContainer, style]}>
       <TouchableHighlight
         disabled={disabled}
         style={[
           styles.buttonBackground,
-          {width: width},
+          {width: width, marginTop: marginTop},
           disabled && {backgroundColor: COLOR_PRIMARY_ORANGE_DISABLED},
         ]}
         underlayColor={COLOR_SECONDARY_ORANGE}
@@ -31,7 +38,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderRadius: 10,
     elevation: 3,
-    marginTop: 30,
   },
   buttonContainer: {
     display: 'flex',

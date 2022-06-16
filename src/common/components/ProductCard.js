@@ -24,7 +24,9 @@ import CartIcon from '../../assets/vectors/shopping_cart_white.svg';
 
 export default function HorizontalMenu(props) {
   const navigateToItem = () => {
-    props.navigation.navigate('ProductPageScreen');
+    props.navigation.navigate('ProductPageScreen', {
+      data: props.data,
+    });
   };
   return (
     <SafeAreaView>

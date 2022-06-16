@@ -9,6 +9,7 @@ import OrdersIcon from '../assets/vectors/NavigationVectors/orders.svg';
 import ProfileIcon from '../assets/vectors/NavigationVectors/profile.svg';
 import {
   COLOR_PRIMARY_ORANGE,
+  COLOR_PRIMARY_WHITE,
   COLOR_PRIMARY_WHITE_DISABLED,
   COLOR_RED_GRADIENT_BOTTOM,
 } from '../constants/ColorConstants';
@@ -44,6 +45,11 @@ const TabNavigator = () => {
         component={CartPage}
         options={{
           tabBarIcon: ({color}) => <CartIcon fill={color} stroke={color} />,
+          tabBarBadge: 3,
+          tabBarBadgeStyle: {
+            backgroundColor: COLOR_PRIMARY_ORANGE,
+            color: COLOR_PRIMARY_WHITE,
+          },
         }}
       />
       <Tab.Screen
