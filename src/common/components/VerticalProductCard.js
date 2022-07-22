@@ -51,7 +51,9 @@ export default function VerticalProductCard(props) {
               </PrimaryButton>
             </View>
             <Image
-              source={props.data.image}
+              source={{
+                uri: props.data.image[0].url,
+              }}
               style={styles.imageStyle}
               borderTopLeftRadius={18}
               borderTopRightRadius={18}
@@ -79,6 +81,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: '45%',
+    height: '100%',
   },
   productTitle: {
     color: COLOR_PRIMARY_ORANGE,

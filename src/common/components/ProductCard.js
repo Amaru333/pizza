@@ -22,7 +22,7 @@ import images from '../../constants/ImageConstants';
 import PrimaryButton from './PrimaryButton';
 import CartIcon from '../../assets/vectors/shopping_cart_white.svg';
 
-export default function HorizontalMenu(props) {
+export default function ProductCard(props) {
   const navigateToItem = () => {
     props.navigation.navigate('ProductPageScreen', {
       data: props.data,
@@ -36,8 +36,11 @@ export default function HorizontalMenu(props) {
           onPress={navigateToItem}>
           <>
             <Image
-              source={props.data.image}
-              style={styles.imageStyle}
+              source={{
+                uri: props.data.image[0].url,
+              }}
+              // source={props.data.image}
+              style={[styles.imageStyle]}
               borderTopLeftRadius={18}
               borderTopRightRadius={18}
             />
@@ -81,6 +84,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: 194,
+    height: 194,
     marginLeft: 3,
     marginTop: 2,
   },

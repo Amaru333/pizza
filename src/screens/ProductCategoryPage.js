@@ -9,12 +9,12 @@ export default function ProductCategoryPage(props) {
       <Header navigation={props.navigation}>
         {props?.route?.params?.data?.heading}
       </Header>
-      <ScrollView>
-        <ProductCategoryComponent
-          route={props.route}
-          navigation={props.navigation}
-        />
-      </ScrollView>
+      {/* <ScrollView> */}
+      <ProductCategoryComponent
+        route={props.route}
+        navigation={props.navigation}
+      />
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }

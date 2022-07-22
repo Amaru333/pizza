@@ -53,7 +53,7 @@ export default function Slider({headerText, images, text, type = 'loading'}) {
               {borderBottomRightRadius: type == 'product' ? 0 : 15},
             ]}
             key={index}
-            source={imageValue}>
+            source={type != 'product' ? imageValue : {uri: imageValue.url}}>
             <View style={type != 'product' && styles.imageOpacity}>
               {type == 'loading' ? (
                 <Text style={styles.textOverlay}>

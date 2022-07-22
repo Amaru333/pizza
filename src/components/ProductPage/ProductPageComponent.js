@@ -23,12 +23,12 @@ let ScreenHeight = Dimensions.get('window').height;
 
 export default function ProductPageComponent(props) {
   const productData = props?.route?.params?.data;
-  const [variety, setVariety] = useState(productData.price[0].tag);
+  const [variety, setVariety] = useState(productData.price[0].type);
 
   return (
     <SafeAreaView>
       <View style={styles.productPageContainer}>
-        <Slider images={HOME_PAGE_SLIDER_IMAGES} type="product" />
+        <Slider images={productData.image} type="product" />
         <View>
           <View style={styles.descriptionContainer}>
             <Text style={styles.heading}>{productData.title}</Text>
@@ -45,8 +45,8 @@ export default function ProductPageComponent(props) {
               <PriceTag
                 text={varietyName.type}
                 price={varietyName.price}
-                variety={varietyName.tag}
-                active={varietyName.tag == variety}
+                variety={varietyName.type}
+                active={varietyName.type == variety}
                 key={index}
                 setVariety={setVariety}
               />
