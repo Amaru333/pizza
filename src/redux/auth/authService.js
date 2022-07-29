@@ -33,7 +33,6 @@ const login = async userData => {
 
 //Add user information
 const addUserInfo = async userInfo => {
-  console.log(userInfo);
   const response = await axios.patch(
     API_UDPATE_USER_DETAILS,
     {
@@ -51,7 +50,6 @@ const addUserInfo = async userInfo => {
       },
     },
   );
-  console.log(response);
 
   if (response.data) {
     let user = response.data;

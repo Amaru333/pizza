@@ -89,7 +89,6 @@ export const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getPopularProducts.fulfilled, (state, action) => {
-        console.log(action.payload, 'ACTIONNNNNNNN');
         state.isLoading = false;
         state.isSuccess = true;
         state.popularItems.items.push(
@@ -109,7 +108,6 @@ export const productSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getProductsByType.fulfilled, (state, action) => {
-        console.log(action.payload, 'ACTIONNNNNNNN');
         state.isLoading = false;
         state.isSuccess = true;
         if (action.payload.query.type == 'veg') {

@@ -14,7 +14,6 @@ export default function LoadingScreen(props) {
   const {user} = useSelector(state => state.auth);
 
   const pressLoadingScreen = () => {
-    console.log(user, 'USER');
     if (user != null) {
       if (
         user.address &&

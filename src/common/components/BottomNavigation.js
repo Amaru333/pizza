@@ -44,7 +44,6 @@ export default function BottomNavigation(props) {
         index: 0,
         routes: [{name: route}],
       });
-    console.log(route);
   };
 
   const renderIcon = currentRoute => {

@@ -10,6 +10,7 @@ import {
   COLOR_PRIMARY_ORANGE,
   COLOR_PRIMARY_WHITE_DISABLED,
 } from '../../constants/ColorConstants';
+import {capitalizeFirstLetter} from '../functions/CapitalizeFirstLetter';
 
 const PriceTag = ({text, price, active, setVariety, variety}) => {
   let activeColor = active
@@ -25,7 +26,9 @@ const PriceTag = ({text, price, active, setVariety, variety}) => {
               borderColor: activeColor,
             },
           ]}>
-          <Text style={[{color: activeColor}, styles.titleText]}>{text}</Text>
+          <Text style={[{color: activeColor}, styles.titleText]}>
+            {capitalizeFirstLetter(text)}
+          </Text>
           <Text style={[{color: activeColor}]}>₹{price}</Text>
         </View>
       </TouchableOpacity>

@@ -7,6 +7,8 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import CustomizeMenu from '../../common/components/Actionsheets/CustomizeMenu';
 import PriceTag from '../../common/components/PriceTag';
 import PrimaryButton from '../../common/components/PrimaryButton';
 import RenderRating from '../../common/components/RenderRating';
@@ -17,13 +19,32 @@ import {
   COLOR_PRIMARY_ORANGE,
   COLOR_PRIMARY_WHITE,
 } from '../../constants/ColorConstants';
-import {HOME_PAGE_SLIDER_IMAGES} from '../../constants/ImageConstants';
+import {addToCart} from '../../redux/cart/cartSlice';
 
 let ScreenHeight = Dimensions.get('window').height;
 
 export default function ProductPageComponent(props) {
   const productData = props?.route?.params?.data;
   const [variety, setVariety] = useState(productData.price[0].type);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const {user} = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const addProduct = () => {
+    const data_list = {
+      product: {
+        ...productData,
+        data: productData._id,
+        size: variety,
+        quantity: 1,
+      },
+      user: {
+        user_id: user._id,
+        user_token: user.token,
+      },
+    };
+    dispatch(addToCart(data_list));
+  };
 
   return (
     <SafeAreaView>
@@ -54,18 +75,26 @@ export default function ProductPageComponent(props) {
           </ScrollView>
           <View style={styles.buttonContainer}>
             <View style={styles.flex1}>
-              <PrimaryButton width="90%">
+              <PrimaryButton width="90%" onPress={addProduct}>
                 <Text style={styles.addButton}>{`Add    >`}</Text>
               </PrimaryButton>
             </View>
             <View style={styles.flex1}>
-              <SecondaryButton width="90%">
+              <SecondaryButton width="90%" onPress={() => setSheetOpen(true)}>
                 <Text style={styles.customizeButton}>{`Customize    >`}</Text>
               </SecondaryButton>
             </View>
           </View>
         </View>
       </View>
+      <CustomizeMenu
+        isOpen={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        setOpen={setSheetOpen}
+        priceList={productData.price}
+        selectedPrice={variety}
+        data={productData}
+      />
     </SafeAreaView>
   );
 }

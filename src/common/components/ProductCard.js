@@ -18,9 +18,10 @@ import {
   COLOR_WHITE,
   COLOR_WHITE_20,
 } from '../../constants/ColorConstants';
-import images from '../../constants/ImageConstants';
 import PrimaryButton from './PrimaryButton';
 import CartIcon from '../../assets/vectors/shopping_cart_white.svg';
+import CustomizeMenu from './Actionsheets/CustomizeMenu';
+import {useState} from 'react';
 
 export default function ProductCard(props) {
   const navigateToItem = () => {
@@ -28,6 +29,9 @@ export default function ProductCard(props) {
       data: props.data,
     });
   };
+
+  const [sheetOpen, setSheetOpen] = useState(false);
+
   return (
     <SafeAreaView>
       <View style={styles.cardWrapper}>
@@ -52,7 +56,7 @@ export default function ProductCard(props) {
                 </Text>
               </View>
               <View>
-                <PrimaryButton width="85%" onPress={() => console.log('bruh')}>
+                <PrimaryButton width="85%" onPress={() => setSheetOpen(true)}>
                   <CartIcon />
                   <Text style={styles.priceTag}>
                     ₹{props.data.price[0].price}
@@ -63,6 +67,13 @@ export default function ProductCard(props) {
           </>
         </TouchableHighlight>
       </View>
+      <CustomizeMenu
+        isOpen={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        setOpen={setSheetOpen}
+        priceList={props.data.price}
+        data={props.data}
+      />
     </SafeAreaView>
   );
 }

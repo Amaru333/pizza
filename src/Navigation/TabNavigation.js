@@ -16,10 +16,13 @@ import {
 import {HomeScreenNavigation} from './HomeScreenNavigation';
 import ProfilePage from '../screens/ProfilePage';
 import OrdersPage from '../screens/OrdersPage';
+import {useSelector} from 'react-redux';
+import {getCartItems, getCartLength} from '../redux/cart/cartSlice';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const cartLength = useSelector(getCartLength());
   return (
     <Tab.Navigator
       screenOptions={{
@@ -45,7 +48,7 @@ const TabNavigator = () => {
         component={CartPage}
         options={{
           tabBarIcon: ({color}) => <CartIcon fill={color} stroke={color} />,
-          tabBarBadge: 3,
+          tabBarBadge: cartLength,
           tabBarBadgeStyle: {
             backgroundColor: COLOR_PRIMARY_ORANGE,
             color: COLOR_PRIMARY_WHITE,

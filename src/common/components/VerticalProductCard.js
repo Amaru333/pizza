@@ -18,6 +18,8 @@ import PrimaryButton from './PrimaryButton';
 import CartIcon from '../../assets/vectors/shopping_cart_white.svg';
 import HorizontalLine from './HorizontalLine';
 import RenderRating from './RenderRating';
+import CustomizeMenu from './Actionsheets/CustomizeMenu';
+import {useState} from 'react';
 
 export default function VerticalProductCard(props) {
   const navigateToItem = () => {
@@ -25,6 +27,7 @@ export default function VerticalProductCard(props) {
       data: props.data,
     });
   };
+  const [sheetOpen, setSheetOpen] = useState(false);
   return (
     <SafeAreaView>
       <View style={styles.viewWrapper}>
@@ -43,7 +46,7 @@ export default function VerticalProductCard(props) {
                 marginTop={5}
                 width={'80%'}
                 style={{alignItems: 'flex-start'}}
-                onPress={() => console.log('bruh')}>
+                onPress={() => setSheetOpen(true)}>
                 <CartIcon />
                 <Text style={styles.priceTag}>
                   ₹{props.data.price[0].price}
@@ -68,6 +71,13 @@ export default function VerticalProductCard(props) {
           height={1}
         />
       </View>
+      <CustomizeMenu
+        isOpen={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        setOpen={setSheetOpen}
+        priceList={props.data.price}
+        data={props.data}
+      />
     </SafeAreaView>
   );
 }

@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Button, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Button,
+  View,
+  Text,
+  ScrollView,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HorizontalMenu from '../../common/components/HorizontalMenu';
 import Slider from '../../common/components/Slider';
@@ -10,6 +17,7 @@ import {
   TEXT_HOME_PAGE_SLIDER_2,
 } from '../../constants/TextConstants';
 import {logout, reset} from '../../redux/auth/authSlice';
+import {loadCartDetails} from '../../redux/cart/cartSlice';
 import {
   getNonVegPage,
   getNonVegProduct,
@@ -24,6 +32,7 @@ import {
 
 export default function HomePageComponent(props) {
   const dispatch = useDispatch();
+  const {user} = useSelector(state => state.auth);
 
   const logoutUser = () => {
     dispatch(logout());
@@ -68,7 +77,12 @@ export default function HomePageComponent(props) {
         type: 'non_veg',
       }),
     );
+    // dispatch(loadCartDetails(user._id));
   }, []);
+
+  useEffect(() => {
+    if (user) dispatch(loadCartDetails({id: user._id, token: user.token}));
+  }, [user]);
 
   const homePageData = [
     {

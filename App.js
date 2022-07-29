@@ -12,6 +12,7 @@ import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import {AppNavigator} from './src/Navigation/AppNavigation';
 import BottomNavigation from './src/common/components/BottomNavigation';
+import {NativeBaseProvider} from 'native-base';
 
 const App: () => Node = () => {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -19,9 +20,11 @@ const App: () => Node = () => {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
   return (
-    <Provider store={store}>
-      <AppNavigator />
-    </Provider>
+    <NativeBaseProvider>
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
+    </NativeBaseProvider>
   );
 };
 

@@ -10,7 +10,6 @@ import {
 import VegIcon from '../../assets/vectors/veg_icon.svg';
 import NonVegIcon from '../../assets/vectors/non_veg_icon.svg';
 import {COLOR_PRIMARY_ORANGE} from '../../constants/ColorConstants';
-import images from '../../constants/ImageConstants';
 
 import ProductCard from './ProductCard';
 
