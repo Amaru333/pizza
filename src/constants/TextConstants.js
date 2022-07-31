@@ -64,7 +64,13 @@ export const TEXT_HOME_PAGE_SLIDER_1 = [
 //PRODUCT PAGE
 export const TEXT_CHOOSE_PIZZA = 'Choose Pizza';
 
+//CART PAGE
 export const TEXT_CART = 'Cart';
+export const TEXT_ORDER_DESCRIPTION = 'Payment for Pizza';
+export const TEXT_ORDER_LOGO =
+  'https://res.cloudinary.com/amaru/image/upload/v1659186171/s2wnrjoocgy2kazfaphh_kivq5g.png';
+export const TEXT_ORDER_CURRENCY = 'INR';
+export const KEY_ID = 'rzp_test_b70TUA2H1nWdYa';
 
 //PRODUCT CATEGORY PAGE
 // export const TEXT_CHOOSE_PIZZA = 'Choose Pizza';

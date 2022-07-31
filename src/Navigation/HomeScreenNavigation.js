@@ -7,7 +7,12 @@ import ProductCategoryPage from '../screens/ProductCategoryPage';
 const {Navigator, Screen} = createNativeStackNavigator();
 
 const HomeScreenNavigation = () => (
-  <Navigator screenOptions={{headerShown: false}}>
+  <Navigator
+    screenOptions={{
+      headerShown: false,
+      gestureEnabled: true,
+      gestureDirection: 'horizontal',
+    }}>
     <Screen name="HomeScreen" component={HomePage}></Screen>
     <Screen name="ProductPageScreen" component={ProductPage}></Screen>
     <Screen
